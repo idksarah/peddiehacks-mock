@@ -38,11 +38,15 @@ function parseEpub(file) {
   });
 
 function getParagraphs(entireText){
-    console.log(entireText);
+    //console.log(entireText);
     entireText = entireText.getElementsByTagName('html')[0].innerHTML;
-    console.log(entireText);
-    let text = entireText.match(/<p>([\s\S]*?)<\/p>/g);
+    //console.log(entireText);
+
+    let firstPIndex = entireText.indexOf('<p>');
+    let lastPIndex = entireText.lastIndexOf('</p>');
+    let text = entireText.substring(firstPIndex, lastPIndex);
     console.log(text);
+    
     return text;
 }
 
