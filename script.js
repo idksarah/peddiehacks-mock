@@ -7,6 +7,7 @@ for (let i = 0; i <= 7; i++){
     para.textContent = '';
     body.appendChild(para);
     paragraphs[`p${i}`] = para;
+    para.classList.add("ePubPara", "p", "text");
 }
 
 let originalText;
@@ -17,15 +18,10 @@ originalText = `<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Nostra h
 
 let parsedText = originalText.match(/[^\.!\?]+[\.!\?]+/g);
 let counter = 0;
-let timeout;
-let first = true;
 let currentPara = 0;
+let intervalId = null;
 
-console.log(parsedText.length);
-console.log(parsedText);
-
-
-function printText(text = parsedText){
+function printText(){
     if(counter < parsedText.length){
         if(counter ==0){
             p0.textContent = parsedText[0].slice(3,parsedText[counter].length);
@@ -40,21 +36,36 @@ function printText(text = parsedText){
             }
         }
         counter++;
+
+    } else {
+        clearInterval(intervalId);
     }
 }
 
-if(counter < parsedText.length){
-    setInterval(printText, 500);
+/*function changeTextValue(newText){
+    stopPrinting();
+
+    counter = 0;
+    currentPara = 0;
+
+    parsedText = [];
+    parsedText = newText.match(/[^\.!\?]+[\.!\?]+/g);
+    console.log(parsedText);
+}*/
+
+function startPrinting() {
+    if (intervalId === null){
+        intervalId = setInterval(printText, 500); //?
+    }
 }
 
-/*
-code to dispaly specific sentences works; just need to adjust it to bold/mark larger whatever is currently being read
-    all text is default at .3 opacity and a pretty large size
-    text being read should simply be higher opacity and bold
-    allow user to choose how many paragraphs/words are allowed on screen but will do later
+function stopPrinting() {
+    if(intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
+}
 
-    append sentences to each paragraph until there's a </p>
-    then start a new paragraph
-    every time there's a sentence bold and highlight it and then unbold lower the opacity of the the last one
-    when u hit the bottom wipe the screen
-*/
+startPrinting();
+
+//create a clear text value
