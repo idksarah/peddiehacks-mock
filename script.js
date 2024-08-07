@@ -61,9 +61,8 @@ content.appendChild(title);
 title.classList.add("text", "title");
 
 function printAndParseText() {
-    console.log("huh");
     let paragraphs ={};
-    for (let i = 0; i <= 7; i++){
+    for (let i = 0; i <= 15; i++){
         let para = document.createElement('p');
         para.id = `p${i}`;
         para.textContent = '';
@@ -73,6 +72,7 @@ function printAndParseText() {
     }
     
     let parsedText = originalText.match(/[^\.!\?]+[\.!\?]+/g);
+    console.log(parsedText);
     let counter = 0;
     let currentPara = 0;
     let intervalId = null;
@@ -83,11 +83,11 @@ function printAndParseText() {
                 p0.textContent = parsedText[0].slice(3,parsedText[counter].length);
                 p0.classList.add("currentText");
             } else {
-                if(parsedText[counter].slice(0,4) == "</p>") {
+                if(parsedText[counter].slice(0,5) == "\n</p>") {
                     currentPara++;
                     let paragraph = paragraphs[`p${currentPara}`];
                     paragraph.classList.add("currentText");
-                    paragraph.textContent += parsedText[counter].slice(8, parsedText[counter].length);
+                    paragraph.textContent += parsedText[counter].slice(10, parsedText[counter].length);
                 } else {
                     let paragraph = paragraphs[`p${currentPara}`];
                     paragraph.textContent += parsedText[counter];
@@ -111,7 +111,7 @@ function printAndParseText() {
     
     function startPrinting() {
         if (intervalId === null){
-            intervalId = setInterval(printText, 2000);
+            intervalId = setInterval(printText, 2500);
         }
     }
     
