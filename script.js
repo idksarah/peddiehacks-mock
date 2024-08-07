@@ -51,7 +51,7 @@ function parseEpub(file) {
       parseEpub(file)
         .then(chapters => {
             originalText = getParagraphs(chapters[2].content);//returns chap 1 cause thats just how the book is structured
-            console.log(originalText);
+            //console.log(originalText);
             printAndParseText();
             
   //should make it able to choose the chapte rbut idc at this point
@@ -69,8 +69,11 @@ title.textContent = "Untitled";
 title.classList.add("text", "title");
 
 function printAndParseText() {
+    let matches = originalText.match(/<p>/g);
+    let numOfPara = matches.length;
+
     let paragraphs ={};
-    for (let i = 0; i <= 18; i++){
+    for (let i = 0; i <= numOfPara; i++){
         let para = document.createElement('p');
         para.id = `p${i}`;
         para.textContent = '';
@@ -79,7 +82,7 @@ function printAndParseText() {
         para.classList.add("ePubPara", "p", "text");
     }
     
-    let parsedText = originalText.match(/[^\.!\?]+[\.!\?]+/g);
+    let parsedText = originalText.match(/[^\.!\?]+[\.!\?"]+/g); //can't handle quotation marks?
     console.log(parsedText);
     let counter = 0;
     let currentPara = 0;
