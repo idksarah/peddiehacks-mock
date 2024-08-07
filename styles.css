@@ -5,7 +5,7 @@
 .text {
     color: rgba(248, 240, 238, 0.5);
     font-family:'Courier New', Courier, monospace;
-    font-size: 35px;
+    font-size: 45px;
 }
 
 .p {
@@ -13,9 +13,10 @@
 }
 
 .title {
-    font-size: 45px;
+    font-size: 55px;
     color: rgb(248, 240, 238);
     padding-left: 15px;
+    text-align: center;
 }
 
 html {
@@ -31,13 +32,33 @@ html {
 }
 
 .content {
-    max-width: 800px;
-    min-width: 600px;
+    max-width: 1200px;
+    min-width: 700px;
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
     overflow-y: auto;
 }
 
-.title {
-    text-align: center;
+.setup {
+    color: rgb(248, 240, 238);
+    font-size: 55px;
+}
+
+.hidden {
+    visibility: hidden;
+    margin-top: -90px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input .setup {
+    margin-left: 200px;
+    border-radius: 5px;
+    font-size: 40px;
+    margin-bottom: 20px;
 }

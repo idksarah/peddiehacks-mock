@@ -15,6 +15,10 @@ function parseEpub(file) {
       reader.onload = function(e) {
         const arrayBuffer = e.target.result;
         const book = ePub(arrayBuffer);
+
+        book.loaded.metadata.then(metadata => {
+          title.textContent = metadata.title;
+        });
   
         book.loaded.spine.then(spine => {
           const chapterPromises = spine.spineItems.map((item, index) => {
@@ -40,6 +44,10 @@ function parseEpub(file) {
   fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (file) {
+      setup.classList.add("hidden");
+      input.classList.add("hidden");
+
+      content.appendChild(title);
       parseEpub(file)
         .then(chapters => {
             originalText = getParagraphs(chapters[2].content);//returns chap 1 cause thats just how the book is structured
@@ -51,12 +59,12 @@ function parseEpub(file) {
     }
   });
 
+let setup = document.querySelector(".setup");
+let input = document.querySelector('.input');
 const body = document.querySelector('body');
 let title = document.createElement('p');
 let content = document.querySelector('.content');
 title.textContent = "Untitled";
-
-content.appendChild(title);
 
 title.classList.add("text", "title");
 
@@ -111,7 +119,7 @@ function printAndParseText() {
     
     function startPrinting() {
         if (intervalId === null){
-            intervalId = setInterval(printText, 2500);
+            intervalId = setInterval(printText, 2600);
         }
     }
     
