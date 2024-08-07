@@ -5,7 +5,7 @@
 .text {
     color: rgba(248, 240, 238, 0.5);
     font-family:'Courier New', Courier, monospace;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .p {
@@ -13,7 +13,7 @@
 }
 
 .title {
-    font-size: 40px;
+    font-size: 45px;
     color: rgb(248, 240, 238);
     padding-left: 15px;
     text-align: center;
@@ -42,7 +42,7 @@ html {
 
 .setup {
     color: rgb(248, 240, 238);
-    font-size: 35px;
+    font-size: 40px;
 }
 
 .hidden {
