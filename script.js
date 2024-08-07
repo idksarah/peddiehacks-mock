@@ -25,17 +25,37 @@ function printText(){
     if(counter < parsedText.length){
         if(counter ==0){
             p0.textContent = parsedText[0].slice(3,parsedText[counter].length);
+            p0.classList.add("currentText");
         } else {
             if(parsedText[counter].slice(0,4) == "</p>") {
                 currentPara++;
                 let paragraph = paragraphs[`p${currentPara}`];
+                paragraph.classList.add("currentText");
                 paragraph.textContent += parsedText[counter].slice(8, parsedText[counter].length);
             } else {
                 let paragraph = paragraphs[`p${currentPara}`];
                 paragraph.textContent += parsedText[counter];
+                paragraph.classList.add("currentText");
             }
         }
         counter++;
+
+        if(paragraphs[counter - 1] && paragraphs[counter - 1].classList.contains("currentText") && paragraphs[counter].classList.contains("currentText")) {
+            console.log("free me");
+            paragraphs[`p${counter - 1}`].classList.remove("currentText");
+        } else if(!paragraphs[counter - 1]) {
+            console.log("paragraphs[counter-1] doesn't exist")
+            console.log(counter);
+        } else if(!paragraphs[counter - 1].classList.contains("currentText")){
+            console.log("currentText isn't attached to old para");
+        } else if(!paragraphs[counter].classList.contains("currentText")) {
+            console.log("currentText isn't attached to current para");
+        }
+
+        /*if (paragraphs[`p${counter - 1}`] && paragraphs[`p${counter - 1}`].classList.contains("currentText")) {
+            console.log("meow");
+            paragraphs[`p${counter - 1}`].classList.remove("currentText");
+        }*/
 
     } else {
         clearInterval(intervalId);
@@ -55,7 +75,7 @@ function printText(){
 
 function startPrinting() {
     if (intervalId === null){
-        intervalId = setInterval(printText, 500); //?
+        intervalId = setInterval(printText, 1500); //?
     }
 }
 
