@@ -70,7 +70,7 @@ title.classList.add("text", "title");
 
 function printAndParseText() {
     let paragraphs ={};
-    for (let i = 0; i <= 15; i++){
+    for (let i = 0; i <= 18; i++){
         let para = document.createElement('p');
         para.id = `p${i}`;
         para.textContent = '';
@@ -102,7 +102,6 @@ function printAndParseText() {
                     paragraph.classList.add("currentText");
                 }
             }
-            scrollToBottom();
             counter++;
     
             if(paragraphs[`p${currentPara - 1}`].classList.contains("currentText") && paragraphs[`p${currentPara}`].classList.contains("currentText")) {
@@ -112,10 +111,6 @@ function printAndParseText() {
             clearInterval(intervalId);
         }
     }
-    
-    function scrollToBottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-      }
     
     function startPrinting() {
         if (intervalId === null){
