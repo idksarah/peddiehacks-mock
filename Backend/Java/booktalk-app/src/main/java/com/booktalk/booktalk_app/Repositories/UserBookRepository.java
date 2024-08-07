@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.booktalk.booktalk_app.Entities.User;
+import com.booktalk.booktalk_app.Entities.UserBook;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserBookRepository extends JpaRepository<UserBook, Long> {
+
 }
