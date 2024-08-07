@@ -1,11 +1,12 @@
 const body = document.querySelector("body");
+const content = document.querySelector(".content");
 
 let paragraphs ={};
 for (let i = 0; i <= 7; i++){
     let para = document.createElement('p');
     para.id = `p${i}`;
     para.textContent = '';
-    body.appendChild(para);
+    content.appendChild(para);
     paragraphs[`p${i}`] = para;
     para.classList.add("ePubPara", "p", "text");
 }
@@ -38,40 +39,20 @@ function printText(){
                 paragraph.classList.add("currentText");
             }
         }
+        scrollToBottom();
         counter++;
 
-        if(paragraphs[counter - 1] && paragraphs[counter - 1].classList.contains("currentText") && paragraphs[counter].classList.contains("currentText")) {
-            console.log("free me");
-            paragraphs[`p${counter - 1}`].classList.remove("currentText");
-        } else if(!paragraphs[counter - 1]) {
-            console.log("paragraphs[counter-1] doesn't exist")
-            console.log(counter);
-        } else if(!paragraphs[counter - 1].classList.contains("currentText")){
-            console.log("currentText isn't attached to old para");
-        } else if(!paragraphs[counter].classList.contains("currentText")) {
-            console.log("currentText isn't attached to current para");
+        if(paragraphs[`p${currentPara - 1}`].classList.contains("currentText") && paragraphs[`p${currentPara}`].classList.contains("currentText")) {
+            paragraphs[`p${currentPara - 1}`].classList.remove("currentText");
         }
-
-        /*if (paragraphs[`p${counter - 1}`] && paragraphs[`p${counter - 1}`].classList.contains("currentText")) {
-            console.log("meow");
-            paragraphs[`p${counter - 1}`].classList.remove("currentText");
-        }*/
-
     } else {
         clearInterval(intervalId);
     }
 }
 
-/*function changeTextValue(newText){
-    stopPrinting();
-
-    counter = 0;
-    currentPara = 0;
-
-    parsedText = [];
-    parsedText = newText.match(/[^\.!\?]+[\.!\?]+/g);
-    console.log(parsedText);
-}*/
+function scrollToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 
 function startPrinting() {
     if (intervalId === null){
