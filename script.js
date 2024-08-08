@@ -51,10 +51,8 @@ function parseEpub(file) {
       parseEpub(file)
         .then(chapters => {
             originalText = getParagraphs(chapters[2].content);//returns chap 1 cause thats just how the book is structured
-            //console.log(originalText);
             printAndParseText();
             
-  //should make it able to choose the chapte rbut idc at this point
         })
     }
   });
@@ -83,7 +81,6 @@ function printAndParseText() {
     }
     
     let parsedText = originalText.match(/[^\.!\?]+[\.!\?"]+/g); //can't handle quotation marks?
-    console.log(parsedText);
     let counter = 0;
     let currentPara = 0;
     let intervalId = null;
@@ -129,7 +126,6 @@ function printAndParseText() {
     }
 
     startPrinting();
-    //create a clear text value eventually
 }
 
 content.addEventListener('click', () => {
