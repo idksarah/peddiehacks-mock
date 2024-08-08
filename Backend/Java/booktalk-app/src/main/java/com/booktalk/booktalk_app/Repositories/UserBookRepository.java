@@ -12,4 +12,5 @@ import com.booktalk.booktalk_app.Entities.UserBook;
 @Repository
 public interface UserBookRepository extends JpaRepository<UserBook, Long> {
     void deleteAllByUser_UserId(Long id);
+    void deleteAllByUser_Email(String email);
 }

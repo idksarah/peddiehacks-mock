@@ -26,4 +26,12 @@ public class GeneralPurposeRestController {
         }
         return ResponseEntity.badRequest().body("No such user found");
     }
+    @DeleteMapping("/deleteUserAccountByEmail/{email}")
+    public ResponseEntity<String> deleteUser(@PathVariable("email") String email){
+        boolean deleted = service.deleteUserByEmail(email);
+        if(deleted){
+            return ResponseEntity.ok("Your account has been successfully deleted!");
+        }
+        return ResponseEntity.badRequest().body("No such user found");
+    }
 }
