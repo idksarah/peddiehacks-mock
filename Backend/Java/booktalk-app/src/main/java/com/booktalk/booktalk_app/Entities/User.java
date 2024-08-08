@@ -34,19 +34,20 @@ public class User {
     private Long userId;
 
     @Column(nullable = false, unique = true)
-    @Email
-    @NotEmpty
+    @Email(message = "Must be a valid email")
+    @NotEmpty(message = "Must not be an empty email")
     private String email;
 
     @Column(nullable = false,unique = true)
+    @NotEmpty(message = "Must not be an empty username")
     private String username;
 
     @Column(nullable = false)
-    @NotEmpty
+    @NotEmpty(message = "Must not be an empty password")
     private String password;
 
     @Column(nullable = false)
-    @NotNull
+    @NotNull(message = "Must state the frequency")
     private Double frequency;
 
     @OneToMany(mappedBy = "user")

@@ -3,6 +3,7 @@ package com.booktalk.booktalk_app.Services;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.booktalk.booktalk_app.Entities.User;
 import com.booktalk.booktalk_app.Repositories.BookRepository;
 import com.booktalk.booktalk_app.Repositories.ChapterRepository;
 import com.booktalk.booktalk_app.Repositories.UserBookRepository;
@@ -34,6 +35,14 @@ public class GeneralPurposeService {
         }
         connections.deleteAllByUser_Email(email);
         users.deleteByEmail(email);
+        return true;
+    }
+    @Transactional
+    public boolean insertUser(User user){
+        if(users.existsByEmail(user.getEmail())){
+            return false;
+        }
+        users.save(user);
         return true;
     }
 }
