@@ -1,8 +1,9 @@
-FROM ngingx:alpine
+FROM nginx:alpine
 
 WORKDIR /peddiehacks-mock
 
-COPY . .
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY Web /usr/share/nginx/Web
 
 EXPOSE 80
 
