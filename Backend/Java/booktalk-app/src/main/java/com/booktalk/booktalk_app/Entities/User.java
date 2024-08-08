@@ -47,7 +47,7 @@ public class User {
 
     @Column(nullable = false)
     @NotNull
-    private Integer frequency;
+    private Double frequency;
 
     @OneToMany(mappedBy = "user")
     private List<UserBook> connectors;

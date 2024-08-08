@@ -37,7 +37,7 @@ public class Book {
     private String author;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     @Column
     private String linkToChat;

@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -37,5 +38,9 @@ public class UserBook {
     @ManyToOne
     @JoinColumn(name="bookId")
     Book book;
+
+    @OneToOne
+    @JoinColumn(name="chapterId")
+    Chapter chapter; // track how much has been read
 
 }

@@ -18,4 +18,13 @@ public class GeneralPurposeService {
     private ChapterRepository chapters;
     private UserRepository users;
     private UserBookRepository connections;
+
+    public boolean deleteUserById(Long id){
+        if(!users.existsById(id)){
+            return false;
+        }
+        connections.deleteAllByUser_UserId(id);
+        users.deleteById(id);
+        return true;
+    }
 }
